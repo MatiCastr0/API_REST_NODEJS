@@ -12,21 +12,35 @@ const {
   validatorCreateItem,
   validatorGetItem,
 } = require("../validators/tracks");
+const authMiddleware = require("../middleware/session");
+const checkRol = require("../middleware/rol");
 // TODO http://localhost/tracks GET, POST, PUT, DELETE
 
 //Lista de Items
-router.get("/", getItems);
+router.get("/", authMiddleware, getItems);
 
 //Obtener detalle de item
-router.get("/:id", validatorGetItem, getItem);
+router.get("/:id", authMiddleware, validatorGetItem, getItem);
 
 //Crear Item
-router.post("/", validatorCreateItem, createItem);
+router.post(
+  "/",
+  authMiddleware,
+  checkRol(["admin"]),
+  validatorCreateItem,
+  createItem
+);
 
 //Actualizar Item
-router.put("/:id", validatorGetItem, validatorCreateItem, updateItem);
+router.put(
+  "/:id",
+  authMiddleware,
+  validatorGetItem,
+  validatorCreateItem,
+  updateItem
+);
 
 //Eliminar Item
-router.delete("/:id", validatorGetItem, deleteItem);
+router.delete("/:id", authMiddleware, validatorGetItem, deleteItem);
 
 module.exports = router;
