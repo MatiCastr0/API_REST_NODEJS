@@ -1,28 +1,40 @@
 const { sequelize } = require("../../config/mysql");
 const { DataTypes } = require("sequelize");
 
-const User = sequelize.define(
-  "users",
+const Tracks = sequelize.define(
+  "tracks",
   {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    age: {
-      type: DataTypes.NUMBER,
-    },
-    email: {
+    album: {
       type: DataTypes.STRING,
     },
-    age: {
-      type: DataTypes.NUMBER,
+    cover: {
+      type: DataTypes.STRING,
     },
-    role: {
-      type: DataTypes.ENUM[("user", "admin")],
+    artist_name: {
+      type: DataTypes.STRING,
+    },
+    artist_nickname: {
+      type: DataTypes.STRING,
+    },
+    artist_nationality: {
+      type: DataTypes.STRING,
+    },
+    duration_start: {
+      type: DataTypes.INTEGER,
+    },
+    duration_end: {
+      type: DataTypes.INTEGER,
+    },
+    mediaId: {
+      type: DataTypes.STRING,
     },
   },
   {
     timestamps: true,
   }
 );
-module.exports = User;
+module.exports = Tracks;
