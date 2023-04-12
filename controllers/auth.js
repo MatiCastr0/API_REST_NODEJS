@@ -40,7 +40,6 @@ const loginCtrl = async (req, res) => {
     const user = await usersModel
       .findOne({ email: req.email })
       .select("password name role email");
-
     if (!user) {
       handleHttpError(res, "USER_NOT_EXISTS", 404);
       return;

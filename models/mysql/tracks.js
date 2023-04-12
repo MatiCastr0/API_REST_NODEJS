@@ -1,5 +1,6 @@
 const { sequelize } = require("../../config/mysql");
 const { DataTypes } = require("sequelize");
+const Storage = require("./storage");
 
 const Tracks = sequelize.define(
   "tracks",
@@ -37,4 +38,26 @@ const Tracks = sequelize.define(
     timestamps: true,
   }
 );
+
+/**
+ * Implementando modelo personalizado
+ */
+Tracks.FindOneData = function (id) {
+  Tracks.belongsTo(Storage, {
+    foreignKeys: "mediaId",
+    as: "audio",
+  });
+
+  return Tracks.findOne({ where: { id }, include: "audio" });
+};
+
+Tracks.FindAllData = function () {
+  Tracks.belongsTo(Storage, {
+    foreignKeys: "mediaId",
+    as: "audio",
+  });
+
+  return Tracks.findAll({ include: "audio" });
+};
+
 module.exports = Tracks;
