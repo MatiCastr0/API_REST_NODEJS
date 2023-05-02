@@ -23,7 +23,7 @@ const swaggerDefinition = {
     schemas: {
       authLogin: {
         type: "object",
-        require: ["email", "password"],
+        required: ["email", "password"],
         properties: {
           email: {
             type: "string",
@@ -35,7 +35,7 @@ const swaggerDefinition = {
       },
       authRegister: {
         type: "object",
-        require: ["email", "password", "age", "name"],
+        required: ["email", "password", "age", "name"],
         properties: {
           email: {
             type: "string",
@@ -53,7 +53,7 @@ const swaggerDefinition = {
       },
       track: {
         type: "object",
-        require: ["name", "album", "cover", "artist", "duration", "mediaId"],
+        required: ["name", "album", "cover", "artist", "duration", "mediaId"],
         properties: {
           name: {
             type: "string",
@@ -96,7 +96,7 @@ const swaggerDefinition = {
       },
       storage: {
         type: "object",
-        require: ["url", "filename"],
+        required: ["url", "filename"],
         properties: {
           url: {
             type: "string",
