@@ -28,7 +28,7 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         run: |
           npm test > test-output.log
-          echo "::set-env name=FAILED_TESTS::$(grep 'FAIL' test-output.log | wc -l)"
+          echo "FAILED_TESTS=$(grep 'FAIL' test-output.log | wc -l)" >> $GITHUB_ENV
 
       - name: Check test results
         run: exit ${{ env.FAILED_TESTS }}
