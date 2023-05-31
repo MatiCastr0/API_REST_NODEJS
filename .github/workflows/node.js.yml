@@ -20,8 +20,8 @@ jobs:
         run: npm ci && cp .env.example .env
       - name: Run test
         env:
-          DB_URI_TEST: ${{ secrets.DB_URI_TEST  }}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK  }}
+          DB_URI_TEST: ${{ secrets.DB_URI_TEST }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         run: npm test && echo ::set-output name=things::$(grep "FAIL" test-output.log | wc -l)
         id: counter
         shell: bash
