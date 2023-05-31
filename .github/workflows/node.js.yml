@@ -11,54 +11,42 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-
       - name: Install dependencies
         run: npm ci && cp .env.example .env
-
-      - name: Run tests
+      - name: Run test
         env:
           DB_URI_TEST: ${{ secrets.DB_URI_TEST }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        run: |
-          npm test > test-output.log
-          echo "FAILED_TESTS=$(grep 'FAIL' test-output.log | wc -l)" >> $GITHUB_ENV
-
+        run: npm test > test-output.log && echo "FAILED_TESTS=$(grep -c 'FAIL' test-output.log)" >> $GITHUB_ENV
       - name: Check test results
-        run: exit ${{ env.FAILED_TESTS }}
+        run: |
+          if [[ "${{ env.FAILED_TESTS }}" -ne 0 ]]; then
+            exit 1
+          fi
 
   deploy:
     runs-on: ubuntu-latest
     needs: [test]
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up SSH key
-        run: echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-        env:
-          PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-
+      - uses: actions/checkout@v2
       - name: Deploy to EC2
         env:
+          PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           HOSTNAME: ${{ secrets.HOST_DNS }}
           USER_NAME: ${{ secrets.USERNAME }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-            # Now we have got access to EC2 and we will start the deploy.
             cd /home/ubuntu/API-REST--MONGO--EXPRESS--NODE- &&
             sudo rm -rf node_modules &&
             git checkout master &&
             git fetch --all &&
             git reset --hard origin/master &&
             git pull origin master &&
-            npm ci &&
-            npm run start:prod
+            npm ci && npm run start:prod
           '
