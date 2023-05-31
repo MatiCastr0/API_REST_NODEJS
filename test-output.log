@@ -1,8 +1,68 @@
-PASS test/01_auth.test.js (5.445 s)
+FAIL test/01_auth.test.js (7.458 s)
+  ● esto deberia de retornar 404
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 | const { testAuthLogin, testAuthRegister } = require("./helper/helperData");
+      5 |
+    > 6 | beforeAll(async () => {
+        | ^
+      7 |   await usersModel.deleteMany({});
+      8 | });
+      9 |
+
+      at Object.beforeAll (test/01_auth.test.js:6:1)
+
+  ● esto deberia de retornar 201
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 | const { testAuthLogin, testAuthRegister } = require("./helper/helperData");
+      5 |
+    > 6 | beforeAll(async () => {
+        | ^
+      7 |   await usersModel.deleteMany({});
+      8 | });
+      9 |
+
+      at Object.beforeAll (test/01_auth.test.js:6:1)
+
+  ● esto deberia de retornar password no valido 401
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 | const { testAuthLogin, testAuthRegister } = require("./helper/helperData");
+      5 |
+    > 6 | beforeAll(async () => {
+        | ^
+      7 |   await usersModel.deleteMany({});
+      8 | });
+      9 |
+
+      at Object.beforeAll (test/01_auth.test.js:6:1)
+
+  ● esto deberia de retornar 200 login exitoso
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 | const { testAuthLogin, testAuthRegister } = require("./helper/helperData");
+      5 |
+    > 6 | beforeAll(async () => {
+        | ^
+      7 |   await usersModel.deleteMany({});
+      8 | });
+      9 |
+
+      at Object.beforeAll (test/01_auth.test.js:6:1)
+
 PASS test/03_tracks.test.js
 PASS test/02_storage.test.js
 
-Test Suites: 3 passed, 3 total
-Tests:       12 passed, 12 total
+Test Suites: 1 failed, 2 passed, 3 total
+Tests:       4 failed, 8 passed, 12 total
 Snapshots:   0 total
-Time:        12.988 s, estimated 13 s
+Time:        15.167 s
