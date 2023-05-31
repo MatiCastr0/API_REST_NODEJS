@@ -16,4 +16,8 @@ const Storage = sequelize.define(
     timestamps: true,
   }
 );
+
+Storage.find = Storage.findAll;
+Storage.findById = Storage.findByPk;
+
 module.exports = Storage;

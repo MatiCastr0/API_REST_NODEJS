@@ -1,12 +1,12 @@
 const testAuthLogin = {
-  email: "test@test.com",
+  email: "mati@test.com",
   password: "12345678",
 };
 
 const testAuthRegister = {
   name: "User test",
   age: 20,
-  email: "test@test.com",
+  email: "mati@test.com",
   password: "12345678",
 };
 
