@@ -41,14 +41,10 @@ jobs:
             
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          echo "$HOSTNAME"
-          echo "$USER_NAME"
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-          
             #Now we have got the access of EC2 and we will start the deploy .
-            sudo su &&
             cd /home/ubuntu/API-REST--MONGO--EXPRESS--NODE- &&
-            rm -rf node_modules &&
+            sudo rm -rf node_modules &&
             git checkout master &&
             git fetch --all &&
             git reset --hard origin/master &&
