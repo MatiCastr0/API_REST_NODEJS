@@ -1,8 +1,8 @@
 PASS test/03_tracks.test.js
-PASS test/02_storage.test.js
 PASS test/01_auth.test.js
+PASS test/02_storage.test.js
 
 Test Suites: 3 passed, 3 total
 Tests:       12 passed, 12 total
 Snapshots:   0 total
-Time:        12.752 s, estimated 20 s
+Time:        12.244 s, estimated 14 s
