@@ -26,9 +26,13 @@ morganBody(app, {
 });
 const port = process.env.PORT || 3000;
 
-/* Definir la Ruta Principal como la de Documentacion */
-app.use("/", swaggerUI.serve, swaggerUI.setup(openApiConfiguration));
-/*
+/* Definir Ruta de la Documentacion */
+app.use(
+  "/documentation",
+  swaggerUI.serve,
+  swaggerUI.setup(openApiConfiguration)
+);
+/*sa
 Aqui invocamos a las rutas
 */
 
