@@ -26,8 +26,6 @@ morganBody(app, {
 });
 const port = process.env.PORT || 3000;
 
-
-
 /* Definir Ruta de la Documentacion */
 app.use(
   "/documentation",
