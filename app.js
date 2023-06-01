@@ -26,11 +26,7 @@ morganBody(app, {
 });
 const port = process.env.PORT || 3000;
 
-/* Definicion de la Ruta Principal */
 
-app.use("/", (req, res) => {
-  res.send("¡Bienvenido a mi aplicación!");
-});
 
 /* Definir Ruta de la Documentacion */
 app.use(
