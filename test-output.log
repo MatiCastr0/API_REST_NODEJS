@@ -3,8 +3,3 @@ onRunStart: numTotalTestSuites: 0
 onRunComplete
 Test results written to: ../../../../../tmp/jest_runner_api_rest__mongo__express__node__1000.json
 
-No tests found related to files changed since last commit.
-onRunStart: numTotalTestSuites: 0
-onRunComplete
-Test results written to: ../../../../../tmp/jest_runner_api_rest__mongo__express__node__1000.json
-
