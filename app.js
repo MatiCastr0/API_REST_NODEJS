@@ -8,7 +8,9 @@ const loggerStream = require("./utils/handleLogger");
 const dbConnectNoSql = require("./config/mongo");
 const { dbConnectMySql } = require("./config/mysql");
 const app = express();
-
+/**
+ *
+ */
 const ENGINE_DB = process.env.ENGINE_DB;
 const NODE_ENV = process.env.NODE_ENV || "development";
 app.use(cors());
