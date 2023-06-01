@@ -51,5 +51,6 @@ jobs:
             sudo git fetch --all &&
             sudo git reset --hard origin/master &&
             sudo git pull origin master &&
-            npm ci && npm run start:prod
+            npm ci && 
+            npm run start:prod
           '
